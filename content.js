@@ -8,6 +8,7 @@ var tags = [
     { id: "nodejs", icon: "fa-download"},
     { id: "reactjs", icon: "fa-download"},
     { id: "sql", icon: "fa-download"},
+    { id: "linux", icon: "fa-download" },
 ]
 
 var post_sql_foreign_keys = {
@@ -32,10 +33,22 @@ var post_sql_transaction = {
     tags: [ tags[0].id, tags[2].id],
 }
 
+var post_linux_foreign_keys = {
+    id: "sql-foreign-keys/index.html",
+    title: "Linux Snippet: Basic Commands",
+    subTitle: "Making relationship between database tables",
+    date: "September 21, 2019",
+    author: udaraBibile.name,
+    featureImage: "images/pic01.jpg",
+    summary: "xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx.",
+    tags: [tags[3].id],
+}
+
 var content = {
     posts: [
         post_sql_foreign_keys,
-        post_sql_transaction
+        post_sql_transaction,
+        post_linux_foreign_keys
     ],
 
     authors: [
