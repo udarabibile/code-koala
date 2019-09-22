@@ -1,0 +1,12 @@
+
+
+--- READ ---
+    add folder by url, and index.html, copy from existing folder
+    add details to content.js
+
+--- TODO ---
+    add common html files for header, footer      use link, import correctly from path
+    <!-- Menu --> sidebar
+
+
+    add lambda functions to keep comments or hearts
