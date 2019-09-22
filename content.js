@@ -1,7 +1,9 @@
 var udaraBibile = {
     name: "Udara Bibile",
+    fullName: "Udara Chathuranga Bibile",
     role: "Full Stack Developer",
-    pic: "images/pic01.jpg"
+    pic: "/images/authors/udarabibile.png",
+    interests: ["nodejs", "dotnet core", "microservices", "golang"]
 }
 
 var tags = [
@@ -12,47 +14,40 @@ var tags = [
 ]
 
 var post_sql_foreign_keys = {
-    id: "sql-foreign-keys/index.html",
+    type: "snippet",
+    id: "sql-foreign-keys",
     title: "SQL Snippet: Foreign Keys",
     subTitle: "Making relationship between database tables",
     date: "September 21, 2019",
     author: udaraBibile.name,
-    featureImage: "images/pic01.jpg",
+    authorImage: udaraBibile.pic,
+    featureImage: "/images/pic01.jpg",
     summary: "xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx.",
     tags: [ tags[0].id, tags[1].id],
 }
 
-var post_sql_transaction = {
-    id: "sql-foreign-keys/index.html",
-    title: "SQL Snippet: Transaction",
-    subTitle: "Making relationship between database tables",
-    date: "September 21, 2019",
+var article_context_api = {
+    type: "article",
+    id: "context-api-introduction",
+    title: "Introduction to React Context API",
+    subTitle: "Avoid props drilling to child components",
+    date: "July 20, 2019",
     author: udaraBibile.name,
-    featureImage: "images/pic01.jpg",
-    summary: "xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx.",
-    tags: [ tags[0].id, tags[2].id],
-}
-
-var post_linux_foreign_keys = {
-    id: "sql-foreign-keys/index.html",
-    title: "Linux Snippet: Basic Commands",
-    subTitle: "Making relationship between database tables",
-    date: "September 21, 2019",
-    author: udaraBibile.name,
-    featureImage: "images/pic01.jpg",
-    summary: "xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx.",
-    tags: [tags[3].id],
+    authorImage: udaraBibile.pic,
+    featureImage: "/context-api-introduction/featured.png",
+    summary: "From React’s version 16.3.0, Context API is officially released to avoid props drilling to child components.",
+    tags: [tags[1].id],
+    content: `<p>From React’s version 16.3.0, Context API is officially released to avoid props drilling to child components.</>`
 }
 
 var content = {
     posts: [
         post_sql_foreign_keys,
-        post_sql_transaction,
-        post_linux_foreign_keys
+        article_context_api,
     ],
 
     authors: [
-        udaraBibile
+        udaraBibile,
     ],
 
     tags: tags
