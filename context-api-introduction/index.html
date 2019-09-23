@@ -41,9 +41,9 @@
                 <span class="image featured"><img src={{featureImage}} alt="" /></span>
                 {{{content}}}
 
-                <hr />
-                <p>In order to understand use of React context and its application, lets look into what complication its trying to fix.
-                </p>
+<hr />
+<p>In order to understand use of React context and its application, lets look into what complication its trying to fix.
+</p>
 <pre><code>import React from &apos;react&apos;;
 
 const App = () =&gt; {
@@ -71,7 +71,126 @@ function MenuItem(props) {
 export default App;
 </code></pre>
 <p>
+In our React application, there can be global properties such as <strong>language</strong>, or <strong>colour</strong> that will configured at top most component in <code>&lt;App /&gt;</code>.
+These properties will be used by child components & also grand child components. Here in above example <code>&lt;MenuItem&gt;</code> element may need value of colour for styling, and language for localization.
+However these properties had to be passed through <code>&lt;Menu /&gt;</code> component, even though its not used in <code>&lt;Menu /&gt;</code>.
 </p>
+
+<pre><code>&lt;App /&gt; → &lt;Menu /&gt; → &lt;MenuItem /&gt;
+</code></pre>
+
+<p>
+Thereby each of these global properties, have to be <strong>mapped as props from intermediate components</strong> even though it may not be used in-between.
+This is called <strong>props drilling</strong> and may introduce <strong>redundant mapping of props</strong> for complex application for multiple properties.
+</p>
+<hr />
+
+<h2>Context API</h2>
+<blockquote>
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.” → React Docs
+</blockquote>
+<p>
+React’s Context API is introduced to address issue of props drilling, where <strong>higher order component’s context can be accessed by child component without mapping props in intermediate components</strong>.
+</p>
+
+<hr />
+
+<h3>Create context by React Context</h3>
+<p>Lets create a context, where default value should be passed to initiate.</p>
+<pre><code>const AppContext = React.createContext({ lang: &apos;en&apos; });</code></pre>
+<p>This context object, has <code>Provider</code> and <code>Consumer</code> with it. Or can extract these properties separately.</p>
+<pre><code>--- Can be used in AppContext.js ---
+export const AppProvider = AppContext.Provider;
+export const AppConsumer = AppContext.Consumer;
+--- OR ---
+const { Provider, Consumer } = React.createContext();
+</code></pre>
+<hr />
+
+<h3>Set context using Context Provider</h3>
+<p>
+In order for context value to be addressed at lower levels, context should be attached to higher level component intended.
+Here this component will be wrapped by <code>Context.Provider</code>, and current value is attached to it as <code>value</code>.
+</p>
+<pre><code>const App = () =&gt;
+    &lt;AppContext.Provider value=&#123;&#123; lang: &apos;fr&apos; &#124;&#124;&gt;
+        &lt;Menu&gt;
+    &lt;AppContext.Provider /&gt;
+</code></pre>
+<p>
+<strong>Note</strong>, that in here value is <strong>not passed as props to</strong> <code>&lt;Menu&gt;</code> component, avoiding props drilling.
+Moreover instead of using <code>&lt;AppContext.Provider&gt;</code>, we can also use <code>&lt;AppProvider value=""&gt;</code> as above if imported from external file.
+</p>
+<hr />
+
+<h3>Get context by Context Consumer</h3>
+<p>
+To access context, which was provided from above <strong>Consumer</strong> can be used.
+</p>
+<pre><code>const MenuItem = () =>
+    &lt;AppContext.Consumer&gt;
+        { value =&gt;
+            &lt;p&gt;Locale: {value.lang}&lt;/p&gt;
+        }
+    &lt;/AppContext.Consumer&gt;
+</code></pre>
+<p>
+As in providing context example, consuming component is also wrapped in <code>&lt;AppContext.Consumer&gt;</code>. And value passed to <code>&lt;AppContext.Provider&gt;</code> can be accessed as above.
+</p>
+<hr />
+
+<h3>Get context by Class contextType</h3>
+<p>
+If using class components in React application, its <code>contextType</code> property can be utilized to access context data. In can be accessed in class as <code>this.context</code>.
+</p>
+<pre><code>class MenuItem extends React.Component {
+    static contextType = AppContext;
+    render() {
+        const appContext = this.context;
+        return (&lt;p&gt;{appContext.lang}&lt;/p&gt;);
+    }
+}
+</code></pre>
+<p>Here <code>contextType</code> is set to required context object using <strong>static</strong> value. Another approach is attaching to context to <code>contextType</code> of class itself.</p>
+<pre><code>class MenuItem extends React.Component {
+    ...
+}
+MenuItem.contextType = AppContext;
+</code></pre>
+<hr />
+
+<p>Lets recreate above props drilling example using React Context here:</p>
+<pre><code>import React from &apos;react&apos;;
+
+const AppContext = React.createContext({ colour: &apos;blue&apos;, lang: &apos;en&apos; });
+
+const App = () =&gt; 
+    &lt;AppContext.Provider value=&#123;{ colour: &apos;blue&apos;, lang: &apos;fr&apos; }&#124;&gt;
+        &lt;Menu /&gt;
+    &lt;/AppContext.Provider&gt;;
+
+function Menu() {
+    return &lt;MenuItem /&gt;
+}
+
+const MenuItem = () =&gt;
+    &lt;AppContext.Consumer&gt;
+        { value =&gt;
+            &lt;div&gt;
+                &lt;p&gt;Theme colour: {value.colour}&lt;/p&gt;
+                &lt;p&gt;Locale: {value.lang}&lt;/p&gt;
+            &lt;/div&gt;
+        }
+    &lt;/AppContext.Consumer&gt;
+
+export default App;
+    </code></pre>
+
+
+
+                    
+
+
                 </article>
             </script>
         
