@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>Code Koala by BIBI</title>
@@ -19,30 +14,7 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-					<header id="header">
-						<h1><a href="/">Code Koala</a></h1>
-						<nav class="links">
-							<ul>
-								<li><a href="#">Articles</a></li>
-								<li><a href="#">Snippets</a></li>
-								<li><a href="/authors">Authors</a></li>
-								<li><a href="/tags">Tags</a></li>
-							</ul>
-						</nav>
-						<nav class="main">
-							<ul>
-								<li class="search">
-									<a class="fa-search" href="#search">Search</a>
-									<form id="search" method="get" action="#">
-										<input type="text" name="query" placeholder="Search" />
-									</form>
-								</li>
-								<li class="menu">
-									<a class="fa-bars" href="#menu">Menu</a>
-								</li>
-							</ul>
-						</nav>
-					</header>
+				<header id="header"></header>
 
 				<!-- Menu -->
 					<section id="menu">
@@ -69,18 +41,6 @@
 											<p>Sed vitae justo condimentum</p>
 										</a>
 									</li>
-									<li>
-										<a href="#">
-											<h3>Feugiat veroeros</h3>
-											<p>Phasellus sed ultricies mi congue</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<h3>Etiam sed consequat</h3>
-											<p>Porta lectus amet ultricies</p>
-										</a>
-									</li>
 								</ul>
 							</section>
 
@@ -100,10 +60,43 @@
 						<div id="posts">
 						</div>
 
+						<script id="post-template" type="text/x-handlebars-template">
+							{{#posts}}
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href={{id}}>{{title}}</a></h2>
+										<p>{{subTitle}}</p>
+									</div>
+									<div class="meta">
+										<h2><a href={{id}}>{{type}}</a></h2>
+										<time class="published" datetime="2015-11-01">{{date}}</time>
+										<a href="#" class="author"><span class="name">{{author}}</span><img src={{authorImage}} alt="" /></a>
+									</div>
+								</header>
+								<!-- <a href={{id}} class="image featured"><img src={{featureImage}} alt="" /></a> -->
+								<!-- <p>{{summary}}</p> -->
+								<footer>
+									<ul class="actions">
+										<li><a href={{id}} class="button large">Continue Reading</a></li>
+									</ul>
+			
+									<ul class="stats">
+										{{#each tags}}
+										<li><a href="#">{{this}}</a></li>
+										{{/each}}
+										<!-- <li><a href="#" class="icon solid fa-heart">28</a></li> -->
+										<!-- <li><a href="#" class="icon solid fa-comment">128</a></li> -->
+									</ul>
+								</footer>
+							</article>
+							{{/posts}} 
+						</script>
+
 						<!-- Pagination -->
 						<ul class="actions pagination">
 							<li><a href="" class="disabled button large previous">Previous Page</a></li>
-							<li><a href="#" class="button large next">Next Page</a></li>
+							<li><a href="#" class="disabled button large next">Next Page</a></li>
 						</ul>
 
 					</div>
@@ -116,15 +109,19 @@
 								<a href="#" class="logo"><img src="images/koala.png" alt="" /></a>
 								<header>
 									<h2>Code Koala</h2>
-									<p>Tech blog by <a href="http://html5up.net">Udara Bibile</a></p>
+									<p>Tech blog by <a href="https://www.linkedin.com/in/udara-chathuranga-bibile">Udara Bibile</a></p>
 								</header>
 							</section>
 
-						<!-- Mini Posts -->
-							<section>
-								<div class="mini-posts">
-									<h3>Articles</h3>
-									<!-- Mini Post -->
+							<div id="sidebarData"></div>
+
+							<script id="sidebar-template" type="text/x-handlebars-template">
+								<!-- Mini Posts -->
+								<section>
+									<div class="mini-posts">
+										<h3>Articles</h3>
+										<!-- Mini Post -->
+										{{#each aritles}}
 										<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Vitae sed condimentum</a></h3>
@@ -133,61 +130,59 @@
 											</header>
 											<a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
 										</article>
-
-									<!-- Mini Post -->
+										{{else}}
 										<article class="mini-post">
 											<header>
-												<h3><a href="single.html">Rutrum neque accumsan</a></h3>
-												<time class="published" datetime="2015-10-19">October 19, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic05.jpg" alt="" /></a>
+												<h3>No articles found.</h3>
 										</article>
+										{{/each}}
 
-								</div>
-							</section>
-
-						<!-- Posts List -->
-							<section>
-								<h3>Snippets</h3>
-								<ul class="posts">
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Lorem ipsum fermentum ut nisl vitae</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="/images/pic08.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Convallis maximus nisl mattis nunc id lorem</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
-										</article>
-									</li>
-								</ul>
-							</section>
+									</div>
+								</section>
+								
+								<!-- Posts List -->
+								<section>
+									<h3>Snippets</h3>
+									<ul class="posts">
+										{{#each snippets}}
+										<li>
+											<article class="mini-post">
+												<header>
+													<h3><a href={{id}}>{{title}}</a></h3>
+													<time class="published" datetime="2015-10-20">{{date}}</time>
+												</header>
+												<!-- <a href="single.html" class="image"><img src="/images/pic08.jpg" alt="" /></a> -->
+											</article>
+										</li>
+										{{else}}
+										<li>
+											<article>
+												<header>
+													<h3>No snippets found.</h3>
+												</header>
+											</article>
+										</li>
+										{{/each}}
+									</ul>
+								</section>
+							</script>
 
 						<!-- About -->
 							<section class="blurb">
 								<h2>About</h2>
-								<h6>Full Stack Developer | Computer Science Graduate.<br/>Software Engineer.</h6>
+								<h6>Full Stack Developer.<br/>Computer Science Graduate.<br/>Software Engineer.</h6>
 								<ul class="actions">
-									<li><a href="#" class="button">Learn More</a></li>
+									<li><a href="/authors" class="button">Learn More</a></li>
 								</ul>
 							</section>
 
 						<!-- Footer -->
 							<section id="footer">
 								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+									<li><a target="_blank" href="https://www.linkedin.com/in/udara-chathuranga-bibile/"
+											class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a target="_blank" href="https://medium.com/@chathuranga94" class="icon brands fa-medium"><span
+												class="label">Medium</span></a></li>
 									<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 								</ul>
 								<p class="copyright">&copy; BIBI. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
@@ -211,40 +206,18 @@
 					var post = $("#post-template").html(); 
 					var postTemplate = Handlebars.compile(post);
 					$('#posts').append(postTemplate(content));
+
+					$.get('/template/header.hbs', function (data) {
+						var headerTemplate = Handlebars.compile(data);
+						$("#header").html(headerTemplate());
+					}, 'html');
+
+					var sidebarData = $("#sidebar-template").html();
+					var sidebarDataTemplate = Handlebars.compile(sidebarData);
+					$('#sidebarData').append(sidebarDataTemplate(content));
+
+					console.log(content)
 				});
-			</script>
-
-			<script id="post-template" type="text/x-handlebars-template">
-				{{#posts}}
-				<article class="post">
-					<header>
-						<div class="title">
-							<h2><a href={{id}}>{{title}}</a></h2>
-							<p>{{subTitle}}</p>
-						</div>
-						<div class="meta">
-							<h2><a href={{id}}>{{type}}</a></h2>
-							<time class="published" datetime="2015-11-01">{{date}}</time>
-							<a href="#" class="author"><span class="name">{{author}}</span><img src={{authorImage}} alt="" /></a>
-						</div>
-					</header>
-					<a href={{id}} class="image featured"><img src={{featureImage}} alt="" /></a>
-					<p>{{summary}}</p>
-					<footer>
-						<ul class="actions">
-							<li><a href={{id}} class="button large">Continue Reading</a></li>
-						</ul>
-
-						<ul class="stats">
-							{{#each tags}}
-							<li><a href="#">{{this}}</a></li>
-							{{/each}}
-							<!-- <li><a href="#" class="icon solid fa-heart">28</a></li> -->
-							<!-- <li><a href="#" class="icon solid fa-comment">128</a></li> -->
-						</ul>
-					</footer>
-				</article>
-				{{/posts}} 
 			</script>
 
 	</body>

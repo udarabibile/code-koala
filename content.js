@@ -16,14 +16,14 @@ var tags = [
 var post_sql_foreign_keys = {
     type: "snippet",
     id: "sql-foreign-keys",
-    title: "SQL Snippet: Foreign Keys",
-    subTitle: "Making relationship between database tables",
-    date: "September 21, 2019",
+    title: "SQL Snippet: Foreign Keys",
+    subTitle: "Managing relationships between database attributes.",
+    date: "September 24, 2019",
     author: udaraBibile.name,
     authorImage: udaraBibile.pic,
     featureImage: "/images/pic01.jpg",
     summary: "xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx xxxxxxxxssssxxxxxxxx.",
-    tags: [ tags[0].id, tags[1].id],
+    tags: [ tags[2].id],
 }
 
 var article_context_api = {
@@ -40,17 +40,21 @@ var article_context_api = {
     content: `<p>From React’s version 16.3.0, Context API is officially released to avoid props drilling to child components.</>`
 }
 
+var  posts = [
+    post_sql_foreign_keys,
+    // article_context_api,
+]
+
 var content = {
-    posts: [
-        post_sql_foreign_keys,
-        article_context_api,
-    ],
+    posts: posts,
 
     authors: [
         udaraBibile,
     ],
 
-    tags: tags
+    tags: tags,
+    articles: posts.filter(post => post.type == "article"),
+    snippets: posts.filter(post => post.type == "snippet"),
 }
 
 
